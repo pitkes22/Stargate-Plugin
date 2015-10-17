@@ -21,3 +21,6 @@ commands:
   dhdinv:
     aliases: [dhdinv,inv]
     description: Tento prikaz otvara inv dhd.
+  a:
+    aliases: []
+    description: Tento prikaz otvara inv dhd.
