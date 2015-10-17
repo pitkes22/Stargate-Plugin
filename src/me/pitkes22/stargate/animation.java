@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
-public class animation extends BukkitPlugin {
+public class animation {
 	
 	public boolean chevron(Location loc, int ch) {
 		//Bukkit.getScheduler().runTaskLater(this, arg1, arg2)
