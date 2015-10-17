@@ -70,8 +70,13 @@ public class StargateListener implements Listener {
 					obracac(loc.clone(),1,6,0).getBlock().getType().isSolid() == false &&
 					obracac(loc.clone(),2,6,0).getBlock().getType().isSolid() == false 
 					
-					){new StargateFactory(loc);}
-			else{((Player)event.getPlayer()).sendMessage("Brana nemohla byť polozena!(Zavadzia jej nejaky block)");}
+					){
+				StargateFactory.createStargate(loc);
+				}
+			else{
+				((Player)event.getPlayer()).sendMessage("Brana nemohla byť polozena!(Zavadzia jej nejaky block)");
+				event.setCancelled(true);
+				}
 			
 			
 			
