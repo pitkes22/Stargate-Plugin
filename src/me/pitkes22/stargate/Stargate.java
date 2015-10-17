@@ -6,7 +6,9 @@ import org.bukkit.entity.Entity;
 
 public class Stargate {
 
-	private Location originBlock;
+	
+
+	private Location originBlockLocation;
 	private ArmorStand stargateBase;
 	private ArmorStand stargateRing;
 	private ArmorStand chevron1Base;
@@ -78,7 +80,13 @@ public class Stargate {
 		}
 		return null;
 	}
+	public Location getOriginBlockLocation() {
+		return originBlockLocation;
+	}
 
+	public void setOriginBlockLocation(Location originBlock) {
+		this.originBlockLocation = originBlock;
+	}
 	public ArmorStand getStargateBase() {
 		return stargateBase;
 	}
