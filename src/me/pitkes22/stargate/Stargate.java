@@ -2,6 +2,7 @@ package me.pitkes22.stargate;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 
 public class Stargate {
 
@@ -44,7 +45,17 @@ public class Stargate {
 	
 	public Stargate(Location loc) {
 		String stargateBaseName = loc.getBlockX()+","+loc.getBlockY()+","+loc.getBlockZ()+","+"stargate_base";
+		
 		//this.stargateBase = 
+	}
+	
+	public static ArmorStand getArmorStandByName(String name, Location loc) {
+		for(Entity e : loc.getWorld().getNearbyEntities(loc, 1, 5, 1)) { 
+			if(if e.getCustomName().equals(name)) {
+				
+			}
+			}
+		return null;
 	}
 	
 	public ArmorStand getStargateBase() {
