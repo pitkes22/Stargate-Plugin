@@ -1,0 +1,23 @@
+name: stargate
+# Version of plugin
+version: 0.1
+# Description of plugin.
+description: Kwoshoooooo
+# Plugin author.
+author: Peter Adam
+# Main class that extends JavaPlugin.
+main: me.pitkes22.stargate.BukkitPlugin
+# Commands.
+commands:
+  bmboot:
+    aliases: [bm, mod, modules]
+    description: Displays information about plugin.
+  stargate:
+    aliases: [sg]
+    description: Tento prikaz spawnuje stargate.
+  dhd:
+    aliases: [dhds]
+    description: Tento prikaz spawnuje dhd.
+  dhdinv:
+    aliases: [dhdinv,inv]
+    description: Tento prikaz otvara inv dhd.
