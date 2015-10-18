@@ -1,9 +1,12 @@
 package me.pitkes22.stargate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public enum symbols {
+public enum Symbol {
 	EARTH("Earth",1,'a'),
 	CRATER("Crater",2,'b'),
 	VIRGO("Virgo",3,'c'),
@@ -47,14 +50,32 @@ public enum symbols {
 	private final String name;
 	private final int id;
 	private final char character;
+	private final static Map<String, Symbol> string2symbols = new HashMap<>();
+	private final static Map<Integer, Symbol> integer2symbols = new HashMap<>();
+	private final static Map<Character, Symbol> character2symbols = new HashMap<>();
 	
 	
-	symbols(String name, int id, char character) {
+	
+	Symbol(String name, int id, char character) {
 		this.name = name;
 		this.id = id;
 		this.character = character;
 	}
-
+	public static Symbol getByString(String code) {
+		return string2symbols.get(code);
+		
+	}
+	
+	public static Symbol getByInteger(int code) {
+		return integer2symbols.get(code);
+		
+	}
+	
+	public static Symbol getByCharacter(char code) {
+		return character2symbols.get(code);
+		
+	}
+	
 
 	public String getName() {
 		return name;
@@ -70,5 +91,14 @@ public enum symbols {
 		return character;
 	}
 	
-
+	static {
+        for (Symbol Symbol : values()) {
+        	string2symbols.put(Symbol.name, Symbol);
+        	integer2symbols.put(Symbol.id, Symbol);
+        	character2symbols.put(Symbol.character, Symbol);
+        }
+    }
 }
+
+
+
