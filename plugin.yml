@@ -24,3 +24,9 @@ commands:
   a:
     aliases: []
     description: Tento prikaz otvara inv dhd.
+  b:
+    aliases: []
+    description: Tento prikaz otvara inv dhd.
+  c:
+    aliases: []
+    description: Tento prikaz otvara inv dhd.

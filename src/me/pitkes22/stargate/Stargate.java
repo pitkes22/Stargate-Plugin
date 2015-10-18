@@ -1,5 +1,6 @@
 package me.pitkes22.stargate;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -45,15 +46,17 @@ public class Stargate {
 	}
 
 	public Stargate(Location loc) {
-	
+		 this.originBlockLocation = loc;
 		 this.stargateBase = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
 					+ "stargate_base", loc);
 		 this.stargateRing = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
-					+ "stargate_Ring", loc);
+					+ "stargate_ring", loc);
 		 this.chevron1Base = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
-					+ "chevron1Base", loc);
+					+ "chevron1_base", loc);
+		 this.chevron1Bottom = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+					+ "chevron1_bottom", loc);
 		 this.chevron1Up = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
-					+ "chevron1Up", loc);
+					+ "chevron1_up", loc);
 		 this.chevron2 = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
 					+ "chevron2", loc);
 		 this.chevron3 = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
@@ -67,18 +70,21 @@ public class Stargate {
 		 this.chevron7 = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
 					+ "chevron7", loc);
 		 this.chevron8 = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
-					+ "chevron7", loc);
+					+ "chevron8", loc);
 		 this.chevron9 = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
-					+ "chevron7", loc);
+					+ "chevron9", loc);
 	}
 
 	public static ArmorStand getArmorStandByName(String name, Location loc) {
-		for (Entity e : loc.getWorld().getNearbyEntities(loc, 1, 5, 1)) {
+		
+		for (Entity e : loc.getWorld().getNearbyEntities(loc, 2, 7, 2)) {
 			if (e.getCustomName().equals(name)) {
+				Bukkit.broadcastMessage(e.getCustomName()+"");
 				return (ArmorStand) e;
 			}
 		}
 		return null;
+		
 	}
 	public Location getOriginBlockLocation() {
 		return originBlockLocation;

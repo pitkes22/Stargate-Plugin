@@ -96,20 +96,22 @@ public class animation {
 				((Player) e).playSound(stargate.getOriginBlockLocation(), "Chevron7Lock", 1, 1);
 				}
 		}
-		stargate.getChevron1Up().teleport(stargate.getChevron1Up().getLocation().add(0, 0.2, 0));
-		stargate.getChevron1Bottom().teleport(stargate.getChevron1Bottom().getLocation().add(0, -0.2, 0));
+		Bukkit.broadcastMessage(stargate.getChevron1Base().getLocation()+"");
+		stargate.getChevron1Up().teleport(stargate.getChevron1Up().getLocation().add(0, 0.12, 0));
+		stargate.getChevron1Bottom().teleport(stargate.getChevron1Bottom().getLocation().add(0, -0.12, 0));
 		Bukkit.getScheduler().runTaskLater(plugin, () -> {
 			stargate.getChevron1Up().setItemInHand(new ItemStack(Material.RECORD_9));
 			stargate.getChevron1Bottom().setItemInHand(new ItemStack(Material.RECORD_12));
-		}, 6);
+		}, 5);
+		
+		Bukkit.getScheduler().runTaskLater(plugin, () -> {
+			stargate.getChevron1Up().teleport(stargate.getChevron1Up().getLocation().add(0, -0.12, 0));
+			stargate.getChevron1Bottom().teleport(stargate.getChevron1Bottom().getLocation().add(0, 0.12, 0));
+		}, 12);
 		Bukkit.getScheduler().runTaskLater(plugin, () -> {
 			stargate.getChevron1Up().setItemInHand(new ItemStack(Material.RECORD_8));
 			stargate.getChevron1Bottom().setItemInHand(new ItemStack(Material.RECORD_10));
-		}, 7);
-		Bukkit.getScheduler().runTaskLater(plugin, () -> {
-			stargate.getChevron1Up().teleport(stargate.getChevron1Up().getLocation().add(0, -0.2, 0));
-			stargate.getChevron1Bottom().teleport(stargate.getChevron1Bottom().getLocation().add(0, 0.2, 0));
-		}, 4);
+		}, 18);
 		
 
 	}
@@ -127,6 +129,20 @@ public class animation {
 	}
 
 	public static void reset(Stargate stargate) {
+		stargate.getChevron1Up().setItemInHand(new ItemStack(Material.RECORD_8));
+		stargate.getChevron1Bottom().setItemInHand(new ItemStack(Material.RECORD_10));
+		stargate.getChevron1Base().setItemInHand(new ItemStack(Material.RECORD_7));
+		stargate.getChevron2().setItemInHand(new ItemStack(Material.RECORD_5));
+		stargate.getChevron3().setItemInHand(new ItemStack(Material.RECORD_5));
+		stargate.getChevron4().setItemInHand(new ItemStack(Material.RECORD_5));
+		stargate.getChevron5().setItemInHand(new ItemStack(Material.RECORD_5));
+		stargate.getChevron6().setItemInHand(new ItemStack(Material.RECORD_5));
+		stargate.getChevron7().setItemInHand(new ItemStack(Material.RECORD_5));
+		stargate.getChevron8().setItemInHand(new ItemStack(Material.RECORD_5));
+		stargate.getChevron9().setItemInHand(new ItemStack(Material.RECORD_5));
+		stargate.getStargateRing().getLocation().setYaw(0);
+		
+		
 
 	}
 }

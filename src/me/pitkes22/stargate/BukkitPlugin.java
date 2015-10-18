@@ -11,6 +11,8 @@ public class BukkitPlugin extends JavaPlugin {
 		//getCommand("autodestruction").setExecutor(new AutodestructionCommandExecutor());
 		//getCommand("stargate").setExecutor(new Stargate());
 		getCommand("a").setExecutor((CommandExecutor) new a(this));
+		getCommand("b").setExecutor((CommandExecutor) new b(this));
+		getCommand("c").setExecutor((CommandExecutor) new c(this));
 		//getCommand("dhdinv").setExecutor(new DhdInvCommandExecutor());
 		getServer().getPluginManager().registerEvents(new StargateListener(), this);
 		
