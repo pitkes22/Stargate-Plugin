@@ -4,12 +4,20 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.util.EulerAngle;
 
 public class Stargate {
 
 	
 
 	private Location originBlockLocation;
+	private ArmorStand eventHorizon;
+	private ArmorStand kawoosh;
 	private ArmorStand stargateBase;
 	private ArmorStand stargateRing;
 	private ArmorStand chevron1Base;
@@ -26,11 +34,12 @@ public class Stargate {
 
 	public Stargate(ArmorStand stargateBase, ArmorStand stargateRing, ArmorStand chevron1Base, ArmorStand chevron1Up,
 			ArmorStand chevron1Bottom, ArmorStand chevron2, ArmorStand chevron3, ArmorStand chevron4,
-			ArmorStand chevron5, ArmorStand chevron6, ArmorStand chevron7, ArmorStand chevron8, ArmorStand chevron9) {
+			ArmorStand chevron5, ArmorStand chevron6, ArmorStand chevron7, ArmorStand chevron8, ArmorStand chevron9, ArmorStand EventHorizon, ArmorStand kawoosh) {
 		// TODO Auto-generated constructor stub
 
 		this.stargateBase = stargateBase;
 		this.stargateRing = stargateRing;
+		this.eventHorizon = EventHorizon;
 		this.chevron1Base = chevron1Base;
 		this.chevron1Up = chevron1Up;
 		this.chevron1Bottom = chevron1Bottom;
@@ -42,6 +51,7 @@ public class Stargate {
 		this.chevron7 = chevron7;
 		this.chevron8 = chevron8;
 		this.chevron9 = chevron9;
+		this.kawoosh = kawoosh;
 
 	}
 
@@ -51,6 +61,14 @@ public class Stargate {
 					+ "stargate_base", loc);
 		 this.stargateRing = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
 					+ "stargate_ring", loc);
+		 this.eventHorizon = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+					+ "eventHorizon", loc);
+		 this.kawoosh = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+					+ "kawoosh", loc);
+		 this.kawoosh = getArmorStandByName(StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockX() + "," + loc.getBlockY() + "," + StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockZ() + ","
+					+ "kawoosh", StargateFactory.rot(loc.clone(),0.75,2.0,-3.4));
+		//Bukkit.broadcastMessage(StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockX() + "," + loc.getBlockY() + "," + StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockZ() + ","
+					//+ "kawoosh");
 		 this.chevron1Base = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
 					+ "chevron1_base", loc);
 		 this.chevron1Bottom = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
@@ -74,12 +92,30 @@ public class Stargate {
 		 this.chevron9 = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
 					+ "chevron9", loc);
 	}
+	
+	
+	
+	public ArmorStand getKawoosh() {
+		return kawoosh;
+	}
+
+	public void setKawoosh(ArmorStand kawoosh) {
+		this.kawoosh = kawoosh;
+	}
+
+	public ArmorStand getEventHorizon() {
+		return eventHorizon;
+	}
+
+	public void setEventHorizon(ArmorStand eventHorizon) {
+		this.eventHorizon = eventHorizon;
+	}
 
 	public static ArmorStand getArmorStandByName(String name, Location loc) {
 		
 		for (Entity e : loc.getWorld().getNearbyEntities(loc, 2, 7, 2)) {
 			if (e.getCustomName().equals(name)) {
-				Bukkit.broadcastMessage(e.getCustomName()+"");
+				//Bukkit.broadcastMessage(e.getCustomName()+"");
 				return (ArmorStand) e;
 			}
 		}
@@ -106,6 +142,7 @@ public class Stargate {
 	}
 
 	public void setStargateRing(ArmorStand stargateRing) {
+		
 		this.stargateRing = stargateRing;
 	}
 

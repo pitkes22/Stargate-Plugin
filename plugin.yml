@@ -30,3 +30,6 @@ commands:
   c:
     aliases: []
     description: Tento prikaz otvara inv dhd.
+  d:
+    aliases: []
+    description: Tento prikaz otvara inv dhd.

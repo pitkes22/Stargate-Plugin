@@ -84,6 +84,26 @@ public class StargateFactory {
 					
 					 loc.setPitch(0);
 					
+					 
+					 
+					 
+					 ArmorStand stargateRing = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.35,2.0,0.5), EntityType.ARMOR_STAND);
+					 stargateRing.setHelmet(new ItemStack(Material.ENDER_PORTAL_FRAME,1));
+					 stargateRing.setGravity(false);
+					 stargateRing.setVisible(false);
+					 stargateRing.setHeadPose(new EulerAngle(1.5707963268,0,0));
+					 stargateRing.setArms(true);
+					 stargateRing.setCustomName(loc.getBlockX()+","+loc.getBlockY()+","+loc.getBlockZ()+","+"stargate_ring");
+					 
+					 
+					 //ArmorStand stargateRing = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.75,2.0,0.5), EntityType.ARMOR_STAND);
+					 //stargateRing.setItemInHand(new ItemStack(Material.ENDER_PORTAL_FRAME,1));
+					 //stargateRing.setGravity(false);
+					 //stargateRing.setVisible(false);
+					 //stargateRing.setRightArmPose(new EulerAngle(1.5707963268,0,0));
+					 //stargateRing.setArms(true);
+					 //stargateRing.setCustomName(loc.getBlockX()+","+loc.getBlockY()+","+loc.getBlockZ()+","+"stargate_ring");
+					 
 					 ArmorStand stargateBase = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.75,2.0,0.5), EntityType.ARMOR_STAND);
 					 stargateBase.setItemInHand(new ItemStack(Material.BEDROCK,1));
 					 stargateBase.setGravity(false);
@@ -93,15 +113,24 @@ public class StargateFactory {
 					 stargateBase.setBodyPose(new EulerAngle(0,0,0));
 					 stargateBase.setCustomName(loc.getBlockX()+","+loc.getBlockY()+","+loc.getBlockZ()+","+"stargate_base");
 					 
+					 ArmorStand eventHorizon = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.75,2.0,0.5), EntityType.ARMOR_STAND);
+					 eventHorizon.setItemInHand(new ItemStack(Material.AIR,1));
+					 eventHorizon.setGravity(false);
+					 eventHorizon.setVisible(false);
+					 eventHorizon.setRightArmPose(new EulerAngle(1.5707963268,0,0));
+					 eventHorizon.setArms(true);
+					 eventHorizon.setBodyPose(new EulerAngle(0,0,0));
+					 eventHorizon.setCustomName(loc.getBlockX()+","+loc.getBlockY()+","+loc.getBlockZ()+","+"eventHorizon");
 					 
+					 ArmorStand kawoosh = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.75,2.0,-3.4), EntityType.ARMOR_STAND);
+					 kawoosh.setItemInHand(new ItemStack(Material.AIR,1));
+					 kawoosh.setGravity(false);
+					 kawoosh.setVisible(false);
+					 kawoosh.setRightArmPose(new EulerAngle(1.5707963268,3.1415926536,0));
+					 kawoosh.setArms(true);
+					 kawoosh.setBodyPose(new EulerAngle(0,0,0));
+					 kawoosh.setCustomName(rot(loc.clone(),0.75,2.0,-3.4).getBlockX()+","+loc.getBlockY()+","+rot(loc.clone(),0.75,2.0,-3.4).getBlockZ()+","+"kawoosh");
 					 
-					 ArmorStand stargateRing = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.75,2.0,0.5), EntityType.ARMOR_STAND);
-					 stargateRing.setItemInHand(new ItemStack(Material.ENDER_PORTAL_FRAME,1));
-					 stargateRing.setGravity(false);
-					 stargateRing.setVisible(false);
-					 stargateRing.setRightArmPose(new EulerAngle(1.5707963268,0,0));
-					 stargateRing.setArms(true);
-					 stargateRing.setCustomName(loc.getBlockX()+","+loc.getBlockY()+","+loc.getBlockZ()+","+"stargate_ring");
 					 
 					 ArmorStand chevron1Base = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.75,2.07,0.5), EntityType.ARMOR_STAND);
 					 chevron1Base.setItemInHand(new ItemStack(Material.RECORD_7,1));
@@ -219,7 +248,7 @@ public class StargateFactory {
 								obracac(loc.clone(),1,6,0).getBlock().setType(Material.BARRIER);
 								obracac(loc.clone(),2,6,0).getBlock().setType(Material.BARRIER);
 					 //loc.getBlock().setType(arg0);
-								return new Stargate(stargateBase, stargateRing, chevron1Base, chevron1Up, chevron1Bottom, chevron2, chevron3, chevron4, chevron5, chevron6, chevron7, chevron8, chevron9);
+								return new Stargate(stargateBase, stargateRing, chevron1Base, chevron1Up, chevron1Bottom, chevron2, chevron3, chevron4, chevron5, chevron6, chevron7, chevron8, chevron9,eventHorizon,kawoosh);
 					 
 					 
 		}			 

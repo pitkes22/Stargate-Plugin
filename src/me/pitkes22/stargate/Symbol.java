@@ -60,6 +60,7 @@ public enum Symbol {
 		this.name = name;
 		this.id = id;
 		this.character = character;
+		
 	}
 	public static Symbol getByString(String code) {
 		return string2symbols.get(code);

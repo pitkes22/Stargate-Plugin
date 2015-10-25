@@ -3,10 +3,12 @@ package me.pitkes22.stargate;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 
 
 
@@ -18,7 +20,7 @@ public class StargateListener implements Listener {
 		loc.setX(loc.getX()+z);
 		loc.setY(loc.getY()+y);
 		loc.setZ(loc.getZ()+x);
-		Bukkit.broadcastMessage("Obraciam X:"+x+" Y:"+y+" Z:"+z+" X:"+loc.getX()+" Y:"+loc.getY()+" Z:"+loc.getZ());
+		//Bukkit.broadcastMessage("Obraciam X:"+x+" Y:"+y+" Z:"+z+" X:"+loc.getX()+" Y:"+loc.getY()+" Z:"+loc.getZ());
 		}
 		else{
 			loc.setX(loc.getX()+x);
@@ -29,7 +31,50 @@ public class StargateListener implements Listener {
 		return loc;
 		
 	}
-	
+	@EventHandler
+	private void onPlayerInteractAtEntity(PlayerInteractAtEntityEvent event1) {
+		org.bukkit.Location loc = event1.getRightClicked().getLocation();
+		loc.setY(loc.getY()-2);
+		//loc.setZ(loc.getZ()-2);
+		((Player) event1.getPlayer()).sendMessage(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+				+ "stargate_base");
+		
+		if (event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+				+ "stargate_base") || 
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "stargate_ring") ||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron1_base") ||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron1_bottom") ||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron1_up") ||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron2")||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron2")||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron3")||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron4")||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron5")||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron6")||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron7")||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron8")||
+				event1.getRightClicked().getCustomName().equals(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
+						+ "chevron9")) {
+			((Player) event1.getPlayer()).sendMessage("prezilo to prvu podmienku");
+			if (event1.getRightClicked().getType().equals(EntityType.ARMOR_STAND)) {
+				((Player) event1.getPlayer()).sendMessage("Tukol si na armorstand ale nenen ziadne menenenie sa nekona :D buheheehehe");
+				
+				event1.setCancelled(true);
+			}
+		}
+	}
 	@EventHandler
 	private void onBlockPlace (BlockPlaceEvent event) { 
 		if(event.getBlock().getType().equals(Material.BEDROCK)) {

@@ -15,7 +15,7 @@ public class a implements CommandExecutor{
 	}
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof Player){
-		animation.chvronShift(new Stargate(new Location(((Player) sender).getWorld(), 200, 90, 200)),plugin);
+		animation.chvronShift(new Stargate(new Location(((Player) sender).getWorld(), 200, 90, 200)),Integer.parseInt(args[0]),plugin, (Player) sender);
 		}
 		return true;
 		

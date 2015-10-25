@@ -16,8 +16,8 @@ public class c implements CommandExecutor{
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof Player){
-		
-		animation.reset(new Stargate(new Location(((Player) sender).getWorld(), 200, 90, 200)));
+			
+		animation.reset(new Stargate(new Location(((Player) sender).getWorld(), 200, 90, 200,((Player) sender).getLocation().getYaw(),((Player) sender).getLocation().getPitch())),plugin,(Player) sender);
 		}
 		return true;
 		
