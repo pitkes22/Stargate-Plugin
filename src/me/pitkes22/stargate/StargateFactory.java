@@ -129,7 +129,7 @@ public class StargateFactory {
 					 kawoosh.setRightArmPose(new EulerAngle(1.5707963268,3.1415926536,0));
 					 kawoosh.setArms(true);
 					 kawoosh.setBodyPose(new EulerAngle(0,0,0));
-					 kawoosh.setCustomName(rot(loc.clone(),0.75,2.0,-3.4).getBlockX()+","+loc.getBlockY()+","+rot(loc.clone(),0.75,2.0,-3.4).getBlockZ()+","+"kawoosh");
+					 kawoosh.setCustomName(rot(loc.clone(),0.75,2.0,-3.4).getBlockX()+","+rot(loc.clone(),0.75,2.0,-3.4).getBlockY()+","+rot(loc.clone(),0.75,2.0,-3.4).getBlockZ()+","+"kawoosh");
 					 
 					 
 					 ArmorStand chevron1Base = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.75,2.07,0.5), EntityType.ARMOR_STAND);

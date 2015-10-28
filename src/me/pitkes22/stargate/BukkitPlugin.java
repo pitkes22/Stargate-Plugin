@@ -16,7 +16,7 @@ public class BukkitPlugin extends JavaPlugin {
 		getCommand("d").setExecutor((CommandExecutor) new d(this));
 		//getCommand("dhdinv").setExecutor(new DhdInvCommandExecutor());
 		getServer().getPluginManager().registerEvents(new StargateListener(), this);
-		getServer().getPluginManager().registerEvents(new DhdListener(), this);
+		getServer().getPluginManager().registerEvents(new DhdListener(this), this);
 		
 		
 

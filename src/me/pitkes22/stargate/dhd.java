@@ -1,35 +1,49 @@
 package me.pitkes22.stargate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class dhd  {
+	public static Inventory inv;
+	public static Location loc;
+	public static ArrayList<Symbol> address = new ArrayList<Symbol>();
 	
+
+	
+
 	public static ItemStack createItem(ItemStack item, String name, String[] lore) {
 	    
 		ItemMeta im = item.getItemMeta();
 	    im.setDisplayName(name);
 	    if(lore.length != 0) {
+	    	
 	    im.setLore(Arrays.asList(lore));
 	    }
 	    item.setItemMeta(im);
 	    return item;
 	}
 	
-	public static boolean openInventory(Player player) {
+	public dhd(Player player, Location loc) {
+		this.loc = loc;
 		
 		if(player instanceof Player) {
 			
-			Inventory inv = Bukkit.getServer().createInventory(null, 6*9, "DHD");
+			
+			
+			inv = Bukkit.getServer().createInventory(null, 6*9, "DHD");
 			
 			
 			inv.setItem(11,createItem(new ItemStack(Material.MONSTER_EGGS,1, (short)1), "§0. ", new String[] {}));
@@ -95,7 +109,31 @@ public class dhd  {
 			((Player) player).openInventory(inv);
 			
 		}
-		return false;
+		
+	}
+
+	public static Location getLoc() {
+		return loc;
+	}
+
+	public static void setLoc(Location loc) {
+		dhd.loc = loc;
+	}
+	
+	public static Inventory getInv() {
+		return inv;
+	}
+
+	public static void setInv(Inventory inv) {
+		dhd.inv = inv;
+	}
+
+	public static ArrayList<Symbol> getAddress() {
+		return address;
+	}
+
+	public static void setAddress(ArrayList<Symbol> address) {
+		dhd.address = address;
 	}
 
 }

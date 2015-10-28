@@ -73,6 +73,7 @@ public enum Symbol {
 	}
 	
 	public static Symbol getByCharacter(char code) {
+		code = Character.toLowerCase(code);
 		return character2symbols.get(code);
 		
 	}

@@ -14,7 +14,8 @@ import org.bukkit.util.EulerAngle;
 public class Stargate {
 
 	
-
+	private  boolean animating;
+	private  boolean reseting;
 	private Location originBlockLocation;
 	private ArmorStand eventHorizon;
 	private ArmorStand kawoosh;
@@ -63,12 +64,11 @@ public class Stargate {
 					+ "stargate_ring", loc);
 		 this.eventHorizon = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
 					+ "eventHorizon", loc);
-		 this.kawoosh = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
-					+ "kawoosh", loc);
-		 this.kawoosh = getArmorStandByName(StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockX() + "," + loc.getBlockY() + "," + StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockZ() + ","
+		 Bukkit.broadcastMessage("Kavoosh je na :"+StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockX() + "," + StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockY() + "," + StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockZ() + ","
+					+ "kawoosh");
+		  this.kawoosh = getArmorStandByName(StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockX() + "," + StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockY() + "," + StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockZ() + ","
 					+ "kawoosh", StargateFactory.rot(loc.clone(),0.75,2.0,-3.4));
-		//Bukkit.broadcastMessage(StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockX() + "," + loc.getBlockY() + "," + StargateFactory.rot(loc.clone(),0.75,2.0,-3.4).getBlockZ() + ","
-					//+ "kawoosh");
+		
 		 this.chevron1Base = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
 					+ "chevron1_base", loc);
 		 this.chevron1Bottom = getArmorStandByName(loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + ","
@@ -232,6 +232,22 @@ public class Stargate {
 
 	public void setChevron9(ArmorStand chevron9) {
 		this.chevron9 = chevron9;
+	}
+
+	public boolean isAnimating() {
+		return animating;
+	}
+
+	public void setAnimating(boolean animating) {
+		this.animating = animating;
+	}
+
+	public boolean isReseting() {
+		return reseting;
+	}
+
+	public void setReseting(boolean reseting) {
+		this.reseting = reseting;
 	}
 
 }

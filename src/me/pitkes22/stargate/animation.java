@@ -20,7 +20,7 @@ import com.avaje.ebeaninternal.server.subclass.GetterSetterMethods;
 public class animation {
 	//private static BukkitTask taskId;
 	private static int id;
-	private static boolean animating;
+	
 	private static int PlayRingTurnSoundSchedulers;
 	private static int PlayRingTurnSoundSchedulerPart1;
 	private static int PlayRingTurnSoundSchedulerPart2;
@@ -33,13 +33,6 @@ public class animation {
 	
 	
 
-	public static boolean isAnimating() {
-		return animating;
-	}
-
-	public static void setAnimating(boolean animating) {
-		animation.animating = animating;
-	}
 
 	public static void chevronLightUp(Stargate stargate,int id,Player player,Plugin plugin) {
 		
@@ -50,9 +43,10 @@ public class animation {
 			for(Entity e : stargate.getOriginBlockLocation().getWorld().getNearbyEntities(stargate.getOriginBlockLocation(), 16, 16, 16)){
 				if(e instanceof Player){
 					((Player) e).playSound(stargate.getOriginBlockLocation(), "ChevronLock", 1, 1);
-					animation.Kawosh(stargate, player, plugin);
+					
 				}
 			}
+			animation.Kawosh(stargate, player, plugin);
 			
 		}
 		if(id == 2) {
@@ -120,7 +114,7 @@ public class animation {
 			}
 	
 		}
-		animation.setAnimating(false);
+		stargate.setAnimating(false);
 	}
 
 	public static void chvronShift(Stargate stargate,int chevron, Plugin plugin,Player player) {
@@ -187,8 +181,9 @@ public class animation {
 	}
 	
 	public static boolean ringTurn(Stargate stargate, Symbol symbol,int direction ,int chevron, Plugin plugin,Player player) {
+		Bukkit.getScheduler().cancelTask(getResetCheduler());
 		Bukkit.getScheduler().cancelTask(id);
-		animation.setAnimating(true);
+		stargate.setAnimating(true);
 		double symbolRot = (float) ((symbol.getId()-1)*0.16110731556);
 		Bukkit.broadcastMessage("ringTurn vytaca symbol:"+symbol.getName());
 	
@@ -210,6 +205,11 @@ public class animation {
 				stargate.getStargateRing().setHeadPose(new EulerAngle(1.5707963268,0,symbolRot));	
 				if(chevron != 0) {
 					animation.chvronShift(stargate, chevron, plugin, player);
+				}else {
+					if(stargate.getStargateRing().getHeadPose().getZ() == 0.0) {
+						Bukkit.broadcastMessage("Setujem animating na false");
+						stargate.setAnimating(false);
+						}
 				}
 				Bukkit.getScheduler().cancelTask(PlayRingTurnSoundSchedulers);	
 				Bukkit.getScheduler().cancelTask(PlayRingTurnSoundSchedulerPart1);
@@ -220,9 +220,10 @@ public class animation {
 				Bukkit.getScheduler().cancelTask(PlayRingTurnSoundSchedulerPart6);
 				Bukkit.getScheduler().cancelTask(id);
 				
+				
 			}else{
 				stargate.getStargateRing().setHeadPose(stargate.getStargateRing().getHeadPose().add(0, 0, 0.0174532925*direction));
-			
+				
 			}
 			
 			//stargate.getStargateRing().getHeadPose().setZ(symbolRot);
@@ -260,19 +261,19 @@ public class animation {
 		}, 50);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 			stargate.getKawoosh().setItemInHand(new ItemStack(Material.CHAINMAIL_LEGGINGS));
-		}, 62);
+		}, 60);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 			stargate.getKawoosh().setItemInHand(new ItemStack(Material.CHAINMAIL_HELMET));
 		}, 65);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 			stargate.getKawoosh().setItemInHand(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
-		}, 78);
+		}, 70);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 			stargate.getKawoosh().setItemInHand(new ItemStack(Material.CHAINMAIL_BOOTS));
-		}, 83);
+		}, 75);
 		Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 			stargate.getKawoosh().setItemInHand(new ItemStack(Material.AIR));
-		}, 84);
+		}, 80);
 		
 		
 	}
@@ -282,6 +283,9 @@ public class animation {
 	}
 
 	public static void reset(Stargate stargate, Plugin plugin,Player player) {
+		if(stargate.isReseting() == false){
+			Bukkit.getScheduler().cancelTask(getResetCheduler());
+			stargate.setReseting(true);
 		int d = 0;
 		if(stargate.getEventHorizon().getItemInHand().getType() == Material.AIR) {
 		for(Entity e : stargate.getOriginBlockLocation().getWorld().getNearbyEntities(stargate.getOriginBlockLocation(), 16, 16, 16)){
@@ -326,17 +330,18 @@ public class animation {
 		Bukkit.getScheduler().cancelTask(PlayRingTurnSoundSchedulerPart5);
 		Bukkit.getScheduler().cancelTask(PlayRingTurnSoundSchedulerPart6);
 		Bukkit.getScheduler().cancelTask(id);
-		Bukkit.getScheduler().cancelTask(Call.id);
+		
+		
 		
 		if(stargate.getStargateRing().getHeadPose().getZ() != 0.0) {
-		resetCheduler = Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+		setResetCheduler(Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 		animation.ringTurn(stargate, Symbol.EARTH, 1, 0, plugin, player);
 		//stargate.getStargateRing().setHeadPose(new EulerAngle(1.5707963268,0,0));
-		
-		}, 200);
+		stargate.setReseting(false);
+		}, 200));
 		}
 			}, d);
-		
+		}
 		
 		
 		
@@ -344,5 +349,15 @@ public class animation {
 		
 		
 
+	}
+
+
+
+	public static int getResetCheduler() {
+		return resetCheduler;
+	}
+
+	public static void setResetCheduler(int resetCheduler) {
+		animation.resetCheduler = resetCheduler;
 	}
 }
