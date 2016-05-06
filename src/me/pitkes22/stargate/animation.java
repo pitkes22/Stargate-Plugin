@@ -28,7 +28,7 @@ public class animation {
 	private static int PlayRingTurnSoundSchedulerPart4;
 	private static int PlayRingTurnSoundSchedulerPart5;
 	private static int PlayRingTurnSoundSchedulerPart6;
-	private static int resetCheduler;
+	
 	
 	
 	
@@ -181,7 +181,7 @@ public class animation {
 	}
 	
 	public static boolean ringTurn(Stargate stargate, Symbol symbol,int direction ,int chevron, Plugin plugin,Player player) {
-		Bukkit.getScheduler().cancelTask(getResetCheduler());
+		Bukkit.getScheduler().cancelTask(stargate.getResetCheduler());
 		Bukkit.getScheduler().cancelTask(id);
 		stargate.setAnimating(true);
 		double symbolRot = (float) ((symbol.getId()-1)*0.16110731556);
@@ -284,7 +284,7 @@ public class animation {
 
 	public static void reset(Stargate stargate, Plugin plugin,Player player) {
 		if(stargate.isReseting() == false){
-			Bukkit.getScheduler().cancelTask(getResetCheduler());
+			Bukkit.getScheduler().cancelTask(stargate.getResetCheduler());
 			stargate.setReseting(true);
 		int d = 0;
 		if(stargate.getEventHorizon().getItemInHand().getType() == Material.AIR) {
@@ -334,7 +334,7 @@ public class animation {
 		
 		
 		if(stargate.getStargateRing().getHeadPose().getZ() != 0.0) {
-		setResetCheduler(Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+		stargate.setResetCheduler(Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 		animation.ringTurn(stargate, Symbol.EARTH, 1, 0, plugin, player);
 		//stargate.getStargateRing().setHeadPose(new EulerAngle(1.5707963268,0,0));
 		stargate.setReseting(false);
@@ -347,17 +347,10 @@ public class animation {
 		
 		
 		
-		
+	}	
 
 	}
 
 
 
-	public static int getResetCheduler() {
-		return resetCheduler;
-	}
 
-	public static void setResetCheduler(int resetCheduler) {
-		animation.resetCheduler = resetCheduler;
-	}
-}

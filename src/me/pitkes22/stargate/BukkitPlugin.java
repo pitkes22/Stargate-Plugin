@@ -18,6 +18,8 @@ public class BukkitPlugin extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new StargateListener(), this);
 		getServer().getPluginManager().registerEvents(new DhdListener(this), this);
 		
+	
+		
 		
 
    }

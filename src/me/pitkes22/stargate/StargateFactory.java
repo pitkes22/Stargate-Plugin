@@ -182,21 +182,21 @@ public class StargateFactory {
 					 chevron5.setRightArmPose(new EulerAngle(0,0,2.7925268032));
 					 chevron5.setCustomName(loc.getBlockX()+","+loc.getBlockY()+","+loc.getBlockZ()+","+"chevron5");
 					 
-					 ArmorStand chevron6 = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.65,2.1,0.5), EntityType.ARMOR_STAND);
+					 ArmorStand chevron6 = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.5,2.1,0.5), EntityType.ARMOR_STAND);
 					 chevron6.setItemInHand(new ItemStack(Material.RECORD_5,1));
 					 chevron6.setGravity(false);
 					 chevron6.setVisible(false);
 					 chevron6.setRightArmPose(new EulerAngle(0,0,3.490658504));
 					 chevron6.setCustomName(loc.getBlockX()+","+loc.getBlockY()+","+loc.getBlockZ()+","+"chevron6");
 					 
-					 ArmorStand chevron7 = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.68,2.15,0.5), EntityType.ARMOR_STAND);
+					 ArmorStand chevron7 = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.68,2.13,0.5), EntityType.ARMOR_STAND);
 					 chevron7.setItemInHand(new ItemStack(Material.RECORD_5,1));
 					 chevron7.setGravity(false);
 					 chevron7.setVisible(false);
 					 chevron7.setRightArmPose(new EulerAngle(0,0,4.1887902048));
 					 chevron7.setCustomName(loc.getBlockX()+","+loc.getBlockY()+","+loc.getBlockZ()+","+"chevron7");
 
-					 ArmorStand chevron8 = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.739,2.15,0.5), EntityType.ARMOR_STAND);
+					 ArmorStand chevron8 = (ArmorStand) loc.getWorld().spawnEntity(rot(loc.clone(),0.7,2.15,0.5), EntityType.ARMOR_STAND);
 					 chevron8.setItemInHand(new ItemStack(Material.RECORD_5,1));
 					 chevron8.setGravity(false);
 					 chevron8.setVisible(false);

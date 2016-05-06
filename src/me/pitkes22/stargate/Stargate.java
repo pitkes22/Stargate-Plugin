@@ -32,6 +32,9 @@ public class Stargate {
 	private ArmorStand chevron7;
 	private ArmorStand chevron8;
 	private ArmorStand chevron9;
+	private int resetCheduler;
+
+
 
 	public Stargate(ArmorStand stargateBase, ArmorStand stargateRing, ArmorStand chevron1Base, ArmorStand chevron1Up,
 			ArmorStand chevron1Bottom, ArmorStand chevron2, ArmorStand chevron3, ArmorStand chevron4,
@@ -248,6 +251,15 @@ public class Stargate {
 
 	public void setReseting(boolean reseting) {
 		this.reseting = reseting;
+		if(reseting == false) {
+			Bukkit.getScheduler().cancelTask(resetCheduler);
+		}
+	}
+	public int getResetCheduler() {
+		return resetCheduler;
 	}
 
+	public void setResetCheduler(int resetCheduler) {
+		this.resetCheduler = resetCheduler;
+	}
 }
